@@ -1,4 +1,6 @@
 const express = require("express");
+const cors = require("cors");
+const bodyParser = require("body-parser");
 const connectDB = require("./config/db");
 const app = express();
 const auth = require("./middleware/auth");
@@ -10,6 +12,8 @@ app.get("/", (req, res) => res.send("API is Running"))
 
 //Init Middleware -> this helps the api to fetch the requests
 app.use(express.json({ extended: false }))
+app.use(cors())
+// app.use(bodyParser.json())
 
 // Define routes
 app.use("/api/users", require('./routes/api/users'))
